@@ -19,6 +19,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -32,7 +33,7 @@ add_library(scc_lib STATIC
 add_executable(run_scc src/run_scc.cpp)
 target_link_libraries(run_scc scc_lib) # Linking scc_lib with run_scc target
 ament_target_dependencies(scc_lib rclcpp) # Linking scc_lib with rclcpp
-ament_target_dependencies(run_scc rclcpp std_msgs)
+ament_target_dependencies(run_scc rclcpp std_msgs sensor_msgs)
 target_include_directories(run_scc PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)

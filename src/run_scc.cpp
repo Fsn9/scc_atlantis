@@ -12,7 +12,7 @@ int main(int argc, char ** argv)
 	while(rclcpp::ok())
 	{
 		scc_node->talk();
-		//rclcpp::spin_some(scc_node);
+		rclcpp::spin_some(scc_node);
 	}
 	rclcpp::shutdown();
 	return 0;
