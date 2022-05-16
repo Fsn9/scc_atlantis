@@ -6,7 +6,6 @@ import os
 
 def generate_launch_description():
     base_path = os.getcwd()
-    print(base_path)
     rviz_path = base_path + '/src/scc_atlantis/rviz/scc.rviz'
     return LaunchDescription(
     [
