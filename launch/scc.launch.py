@@ -6,7 +6,9 @@ import os
 
 def generate_launch_description():
     base_path = os.getcwd()
-    rviz_path = base_path + '/src/scc_atlantis/rviz/scc.rviz'
+    rviz_crow_path = base_path + '/src/scc_atlantis/rviz/crow.rviz'
+    rviz_raven_path = base_path + '/src/scc_atlantis/rviz/raven.rviz'
+    rviz_sense_path = base_path + '/src/scc_atlantis/rviz/sense.rviz'
     return LaunchDescription(
     [
         Node(
@@ -20,8 +22,33 @@ def generate_launch_description():
             package='rviz2',
             namespace='rviz2',
             executable='rviz2',
-            name='rviz2',
+            name='rviz_crow',
             output='screen',
-            arguments=['-d',str(rviz_path)]
-        )
+            arguments=['-d',str(rviz_crow_path)]
+        ),
+        Node(
+            package='rviz2',
+            namespace='rviz2',
+            executable='rviz2',
+            name='rviz_raven',
+            output='screen',
+            arguments=['-d',str(rviz_raven_path)]
+        ),
+        Node(
+            package='rviz2',
+            namespace='rviz2',
+            executable='rviz2',
+            name='rviz_sense',
+            output='screen',
+            arguments=['-d',str(rviz_sense_path)]
+        ),
+        Node(
+            package = "tf2_ros",
+            executable = "static_transform_publisher",
+            arguments = ["0","0","0","0","0","0","map","os_sensor"]
+        ),
+        Node(
+            package = "tf2_ros",
+            executable = "static_transform_publisher",
+            arguments = ["0","0","0","0","0","0","os_sensor","lidar"])
     ])

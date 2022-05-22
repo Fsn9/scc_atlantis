@@ -16,7 +16,5 @@ void Scc::talk()
 
 void Scc::listen_pointcloud(const sensor_msgs::msg::PointCloud2::SharedPtr msg)
 {
-	int w = msg->width;
-	int h = msg->height;
-	printf("Received pc, (w,h): (%d, %d)\n", w, h);
+	printf(">> Received point cloud\n");
 }
