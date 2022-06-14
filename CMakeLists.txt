@@ -51,6 +51,7 @@ target_include_directories(run_scc PUBLIC
 
 # This added line allows custom services and messages to be used by the target given in the first parameter
 rosidl_target_interfaces(run_scc ${PROJECT_NAME} "rosidl_typesupport_cpp")
+rosidl_target_interfaces(scc_lib ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 install(TARGETS
   run_scc

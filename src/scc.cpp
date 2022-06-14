@@ -8,6 +8,12 @@ Scc::Scc() : Node("scc")
 	crow_state_sub_ = create_subscription<mavros_msgs::msg::State>("/crow/mavros/state", 10, std::bind(&Scc::crow_state_cb, this, _1));
 }
 
+void Scc::rtl_srv_cb(const std::shared_ptr<scc_atlantis::srv::RTL::Request> request,
+	std::shared_ptr<scc_atlantis::srv::RTL::Response> response)
+{
+
+}
+
 void Scc::crow_state_cb(const mavros_msgs::msg::State::SharedPtr msg)
 {
 	std::cout << "Crow state: " << msg->mode << "\n";
