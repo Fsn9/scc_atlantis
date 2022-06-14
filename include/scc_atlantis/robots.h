@@ -18,11 +18,11 @@ class Sense : public Robot
 class Crow : public Robot
 {
 	public:
-  Sense();
+  Crow();
 };
 
 class Raven : public Robot
 {
 	public:
-  Sense();
+  Raven();
 };
