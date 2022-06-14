@@ -4,7 +4,18 @@ using std::placeholders::_1;
 Scc::Scc() : Node("scc")
 {
 	publisher_ = create_publisher<std_msgs::msg::String>("topic", 10);
-	sub_point_cloud_ = create_subscription<sensor_msgs::msg::PointCloud2>("/raven/os_cloud_node/points", 10, std::bind(&Scc::listen_pointcloud, this, _1));
+	crow_pcl_sub_ = create_subscription<sensor_msgs::msg::PointCloud2>("/crow/os_cloud_node/points", 10, std::bind(&Scc::crow_pcl_cb, this, _1));
+	crow_state_sub_ = create_subscription<mavros_msgs::msg::State>("/crow/mavros/state", 10, std::bind(&Scc::crow_state_cb, this, _1));
+}
+
+void Scc::crow_state_cb(const mavros_msgs::msg::State::SharedPtr msg)
+{
+	std::cout << "Crow state: " << msg->mode << "\n";
+}
+
+void Scc::crow_pcl_cb(const sensor_msgs::msg::PointCloud2::SharedPtr msg)
+{
+	std::cout << "msg width: " << msg->width;
 }
 
 void Scc::talk()
@@ -14,7 +25,3 @@ void Scc::talk()
 	publisher_->publish(msg);
 }
 
-void Scc::listen_pointcloud(const sensor_msgs::msg::PointCloud2::SharedPtr msg)
-{
-	printf(">> Received point cloud\n");
-}
